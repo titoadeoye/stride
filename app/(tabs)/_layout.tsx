@@ -12,6 +12,7 @@ import HomeIcon from "@/assets/icons/home.svg";
 import OrdersIcon from "@/assets/icons/orders.svg";
 
 // theme
+import TopNavbar from "@/components/ui/TopNavbar";
 import { useThemeContext } from "@/providers/ThemeProvider";
 
 export default function TabLayout() {
@@ -19,50 +20,53 @@ export default function TabLayout() {
   const { theme } = useThemeContext();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: "absolute",
-          },
-          default: {
-            backgroundColor: theme.colors.primary,
-          },
-        }),
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "",
-          tabBarIcon: ({ size, focused }) => (
-            <TabIcon size={size} focused={focused} Icon={HomeIcon} />
-          ),
+    <>
+      <TopNavbar />
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+          headerShown: false,
+          tabBarButton: HapticTab,
+          tabBarStyle: Platform.select({
+            ios: {
+              // Use a transparent background on iOS to show the blur effect
+              position: "absolute",
+            },
+            default: {
+              backgroundColor: theme.colors.primary,
+            },
+          }),
         }}
-      />
-      <Tabs.Screen
-        name="cart"
-        options={{
-          title: "",
-          tabBarIcon: ({ size, focused }) => (
-            <TabIcon size={size} focused={focused} Icon={CartIcon} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="orders"
-        options={{
-          title: "",
-          tabBarIcon: ({ size, focused }) => (
-            <TabIcon size={size} focused={focused} Icon={OrdersIcon} />
-          ),
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "",
+            tabBarIcon: ({ size, focused }) => (
+              <TabIcon size={size} focused={focused} Icon={HomeIcon} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="cart"
+          options={{
+            title: "",
+            tabBarIcon: ({ size, focused }) => (
+              <TabIcon size={size} focused={focused} Icon={CartIcon} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="orders"
+          options={{
+            title: "",
+            tabBarIcon: ({ size, focused }) => (
+              <TabIcon size={size} focused={focused} Icon={OrdersIcon} />
+            ),
+          }}
+        />
+      </Tabs>
+    </>
   );
 }
 
